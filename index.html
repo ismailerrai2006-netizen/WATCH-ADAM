@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Watch adam - Premium Timepieces</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -13,6 +13,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         :root {
@@ -26,13 +27,15 @@
         }
 
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
             background: var(--dark-bg);
             color: var(--text-light);
             overflow-x: hidden;
             transition: var(--transition);
             font-size: 16px;
             line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body.light-mode {
@@ -60,7 +63,7 @@
         }
 
         h3 {
-            font-size: 1rem; /* Smaller for mobile cards */
+            font-size: 1rem;
             font-weight: 300;
             letter-spacing: 1px;
             margin-bottom: 0.5rem;
@@ -68,7 +71,7 @@
         }
 
         p {
-            font-size: 0.875rem; /* Smaller for mobile */
+            font-size: 0.875rem;
             margin-bottom: 0.75rem;
             line-height: 1.4;
         }
@@ -83,11 +86,13 @@
             padding: 1rem;
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             z-index: 1000;
             transition: var(--transition);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            will-change: transform;
         }
 
         body.light-mode nav {
@@ -119,6 +124,8 @@
             transition: right 0.3s ease;
             list-style: none;
             z-index: 1001;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         body.light-mode .nav-links {
@@ -173,6 +180,7 @@
             font-size: 1.25rem;
             cursor: pointer;
             transition: var(--transition);
+            padding: 0.5rem;
         }
 
         .nav-icons i:hover {
@@ -234,6 +242,7 @@
             text-align: center;
             border-radius: 4px;
             margin-bottom: 0.5rem;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .cta-button.primary {
@@ -274,6 +283,7 @@
             font-size: 0.625rem;
             min-height: 36px;
             margin-bottom: 0.5rem;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body.light-mode .filter-btn {
@@ -299,6 +309,7 @@
             letter-spacing: 0.5px;
             font-size: 0.625rem;
             min-height: 32px;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .add-to-cart:hover {
@@ -315,6 +326,7 @@
             transition: var(--transition);
             min-height: 32px;
             min-width: 32px;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .quick-view:hover {
@@ -342,6 +354,9 @@
             height: 100%;
             object-fit: cover;
             z-index: 0;
+            /* Performance optimization for mobile */
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         .hero-overlay {
@@ -423,12 +438,15 @@
 
         .collection-card {
             position: relative;
-            height: 200px; /* Much smaller on mobile */
+            height: 200px;
             overflow: hidden;
             cursor: pointer;
             border-radius: 8px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(212, 175, 55, 0.1);
+            /* Performance optimization */
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         .collection-video {
@@ -436,6 +454,9 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.6s;
+            /* Performance optimization */
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         .collection-card:hover .collection-video {
@@ -484,7 +505,7 @@
            ================================= */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+            grid-template-columns: repeat(2, 1fr);
             gap: 0.75rem;
             margin-bottom: 1.5rem;
         }
@@ -492,12 +513,15 @@
         .product-card {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(212, 175, 55, 0.1);
-            padding: 0.75rem; /* Much smaller padding */
+            padding: 0.75rem;
             text-align: center;
             transition: var(--transition);
             cursor: pointer;
             position: relative;
             border-radius: 8px;
+            /* Performance optimization */
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         body.light-mode .product-card {
@@ -512,7 +536,7 @@
 
         .product-image {
             width: 100%;
-            height: 120px; /* Much smaller images */
+            height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -531,6 +555,9 @@
             object-fit: cover;
             opacity: 0;
             transition: opacity 0.3s;
+            /* Performance optimization */
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         .product-card:hover .product-video {
@@ -538,10 +565,13 @@
         }
 
         .product-image img {
-            max-width: 90%; /* Slightly smaller */
+            max-width: 90%;
             max-height: 90%;
             object-fit: contain;
             transition: transform 0.5s;
+            /* Performance optimization */
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         .product-card:hover .product-image img {
@@ -562,13 +592,13 @@
         }
 
         .product-name {
-            font-size: 0.75rem; /* Much smaller */
+            font-size: 0.75rem;
             font-weight: 300;
             letter-spacing: 0.5px;
             margin-bottom: 0.25rem;
             font-family: 'Times New Roman', serif;
             line-height: 1.2;
-            height: 2.4rem; /* Fixed height for consistency */
+            height: 2.4rem;
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -576,7 +606,7 @@
         }
 
         .product-description {
-            font-size: 0.625rem; /* Very small */
+            font-size: 0.625rem;
             opacity: 0.7;
             margin-bottom: 0.75rem;
             line-height: 1.3;
@@ -597,7 +627,7 @@
         .product-actions {
             display: flex;
             gap: 0.25rem;
-            flex-direction: column; /* Stack buttons vertically */
+            flex-direction: column;
         }
 
         /* =================================
@@ -624,6 +654,7 @@
             transition: var(--transition);
             border-radius: 4px;
             font-size: 0.75rem;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body.light-mode .page-tab {
@@ -651,7 +682,7 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+            grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
             text-align: center;
             max-width: 100%;
@@ -698,6 +729,9 @@
         .testimonial-track {
             display: flex;
             transition: transform 0.5s ease;
+            /* Performance optimization */
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         .testimonial-card {
@@ -741,6 +775,7 @@
             background: rgba(212, 175, 55, 0.3);
             cursor: pointer;
             transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
         }
 
         .dot.active {
@@ -785,6 +820,8 @@
             color: var(--text-light);
             font-size: 0.875rem;
             min-height: 44px;
+            -webkit-appearance: none;
+            border-radius: 0;
         }
 
         body.light-mode .newsletter-input {
@@ -802,6 +839,9 @@
             font-size: 0.75rem;
             transition: var(--transition);
             min-height: 44px;
+            -webkit-appearance: none;
+            border-radius: 0;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .newsletter-button:hover {
@@ -875,6 +915,7 @@
             color: var(--primary-gold);
             cursor: pointer;
             transition: var(--transition);
+            padding: 0.5rem;
         }
 
         .social-icons i:hover {
@@ -923,6 +964,7 @@
             z-index: 2000;
             padding: 0;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         body.light-mode .cart-sidebar {
@@ -954,6 +996,7 @@
             cursor: pointer;
             color: var(--text-light);
             transition: var(--transition);
+            padding: 0.5rem;
         }
 
         body.light-mode .close-cart {
@@ -967,6 +1010,7 @@
         .cart-content {
             overflow-y: auto;
             max-height: calc(100vh - 150px);
+            -webkit-overflow-scrolling: touch;
         }
 
         .cart-section {
@@ -1021,6 +1065,8 @@
             transition: var(--transition);
             border-radius: 4px;
             min-height: 40px;
+            -webkit-appearance: none;
+            border-radius: 0;
         }
 
         body.light-mode .form-input {
@@ -1044,6 +1090,8 @@
             border-radius: 4px;
             transition: var(--transition);
             min-height: 40px;
+            -webkit-appearance: none;
+            border-radius: 0;
         }
 
         body.light-mode .form-select {
@@ -1104,6 +1152,7 @@
             color: var(--primary-gold);
             cursor: pointer;
             transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
         }
 
         .quantity-btn:hover {
@@ -1144,6 +1193,9 @@
             border-radius: 4px;
             margin-top: 0.75rem;
             min-height: 44px;
+            -webkit-appearance: none;
+            border-radius: 0;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .checkout-btn:hover {
@@ -1166,6 +1218,7 @@
             right: 0.75rem;
             background: rgba(212, 175, 55, 0.1);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 50px;
             padding: 0.5rem 0.75rem;
@@ -1174,6 +1227,9 @@
             gap: 0.5rem;
             z-index: 999;
             transition: var(--transition);
+            /* Performance optimization */
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         body.light-mode .music-player {
@@ -1229,6 +1285,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            /* Performance optimization */
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         .intro-logo {
@@ -1297,6 +1356,9 @@
             max-width: 100%;
             height: auto;
             display: block;
+            /* Performance optimization */
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         /* =================================
@@ -1397,7 +1459,7 @@
             }
 
             .products-grid {
-                grid-template-columns: repeat(3, 1fr); /* 3 columns on tablet */
+                grid-template-columns: repeat(3, 1fr);
                 gap: 1rem;
             }
 
@@ -1499,7 +1561,7 @@
             }
 
             .products-grid {
-                grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop */
+                grid-template-columns: repeat(4, 1fr);
                 gap: 1.5rem;
             }
 
@@ -1537,12 +1599,65 @@
                 gap: 2rem;
             }
         }
+
+        /* =================================
+           IPHONE SPECIFIC OPTIMIZATIONS
+           ================================= */
+        @supports (-webkit-touch-callout: none) {
+            /* iOS specific styles */
+            .product-card, .collection-card {
+                /* Reduce shadow effects on iOS for better performance */
+                box-shadow: none;
+            }
+
+            /* Optimize scrolling on iOS */
+            body {
+                -webkit-overflow-scrolling: touch;
+            }
+
+            /* Fix for iOS Safari viewport height */
+            .hero {
+                height: -webkit-fill-available;
+            }
+
+            /* Optimize animations for iOS */
+            .product-card:hover, .collection-card:hover {
+                transform: translateY(-3px) translateZ(0);
+            }
+
+            /* Optimize video playback on iOS */
+            video {
+                -webkit-transform: translateZ(0);
+                will-change: transform;
+            }
+        }
+
+        /* =================================
+           PERFORMANCE OPTIMIZATIONS
+           ================================= */
+        .lazy-load {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .lazy-load.loaded {
+            opacity: 1;
+        }
+
+        /* Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Video Intro Screen -->
     <div class="video-intro" id="videoIntro">
-        <video autoplay muted loop id="introVideo">
+        <video autoplay muted loop id="introVideo" playsinline>
             <source src="202512152132.mp4" type="video/mp4">
         </video>
         <div class="intro-logo">WATCH ADAM</div>
@@ -1560,7 +1675,7 @@
         </div>
 
         <!-- Audio Element -->
-        <audio id="backgroundMusic" loop>
+        <audio id="backgroundMusic" loop playsinline>
             <source src="ssss.mp3" type="audio/mp3">
             Your browser does not support audio element.
         </audio>
@@ -1595,7 +1710,7 @@
 
         <!-- Hero Section -->
         <section class="hero" id="home">
-            <video class="hero-video" autoplay muted loop>
+            <video class="hero-video" autoplay muted loop playsinline>
                 <source src="202512152132.mp4" type="video/mp4">
             </video>
             <div class="hero-overlay"></div>
@@ -1613,7 +1728,7 @@
             <h2 class="section-title">Signature Collections</h2>
             <div class="collection-grid">
                 <div class="collection-card">
-                    <video class="collection-video" autoplay muted loop>
+                    <video class="collection-video" autoplay muted loop playsinline>
                         <source src="202512211110.mp4" type="video/mp4">
                     </video>
                     <div class="collection-overlay">
@@ -1623,8 +1738,8 @@
                 </div>
                 <!-- Women's Watches Collection -->
                 <div class="collection-card">
-                    <video class="collection-video" autoplay muted loop>
-                        <source src="3d Watch Animation _ 3d Product Animation (2).mp4" type="video/mp4">
+                    <video class="collection-video" autoplay muted loop playsinline>
+                        <source src="202512211207.mp4" type="video/mp4">
                     </video>
                     <div class="collection-overlay">
                         <h3 class="collection-name">Women's Collection</h3>
@@ -1633,7 +1748,7 @@
                 </div>
                 <!-- Luxury Wallets Collection -->
                 <div class="collection-card">
-                    <video class="collection-video" autoplay muted loop>
+                    <video class="collection-video" autoplay muted loop playsinline>
                         <source src="202512211147.mp4" type="video/mp4">
                     </video>
                     <div class="collection-overlay">
@@ -2371,6 +2486,7 @@
         let musicStarted = false;
         let currentPage = 1;
         const itemsPerPage = 8;
+        let isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
         // Initialize the website after the intro
         function initializeWebsite() {
@@ -2383,6 +2499,51 @@
                 currentTestimonial = (currentTestimonial + 1) % 3;
                 showTestimonial(currentTestimonial);
             }, 5000);
+
+            // Optimize videos for mobile
+            optimizeVideosForMobile();
+        }
+
+        // Optimize videos for mobile devices
+        function optimizeVideosForMobile() {
+            // Check if device is touch-enabled (likely mobile)
+            if (isTouchDevice) {
+                // Reduce video quality or pause videos that are not visible
+                const videos = document.querySelectorAll('video');
+                
+                // Use Intersection Observer to pause videos when not visible
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        const video = entry.target;
+                        if (entry.isIntersecting) {
+                            // Video is visible, play if autoplay is set
+                            if (video.autoplay) {
+                                video.play().catch(e => console.log('Autoplay prevented:', e));
+                            }
+                        } else {
+                            // Video is not visible, pause to save resources
+                            video.pause();
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                // Observe all videos
+                videos.forEach(video => {
+                    observer.observe(video);
+                    
+                    // Add playsinline attribute for iOS
+                    if (!video.hasAttribute('playsinline')) {
+                        video.setAttribute('playsinline', '');
+                    }
+                    
+                    // Reduce video quality for mobile if possible
+                    // This is a simplified approach - in production you might use adaptive bitrate streaming
+                    if (video.src && video.src.includes('.mp4')) {
+                        // You could replace with a lower quality version for mobile
+                        // video.src = video.src.replace('.mp4', '-mobile.mp4');
+                    }
+                });
+            }
         }
 
         // Initialize products
@@ -2407,8 +2568,8 @@
                 <div class="product-card">
                     <div class="product-image">
                         ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
-                        <img src="${product.image}" alt="${product.name}">
-                        <video class="product-video" muted loop>
+                        <img src="${product.image}" alt="${product.name}" loading="lazy">
+                        <video class="product-video" muted loop playsinline>
                             <source src="${product.video}" type="video/mp4">
                         </video>
                     </div>
@@ -2430,6 +2591,46 @@
                 paginationHTML += `<div class="page-tab ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</div>`;
             }
             pagination.innerHTML = paginationHTML;
+            
+            // Optimize product videos after rendering
+            optimizeProductVideos();
+        }
+
+        // Optimize product videos for mobile
+        function optimizeProductVideos() {
+            if (isTouchDevice) {
+                // For touch devices, only play videos on hover/touch to save resources
+                const productCards = document.querySelectorAll('.product-card');
+                
+                productCards.forEach(card => {
+                    const video = card.querySelector('.product-video');
+                    if (!video) return;
+                    
+                    // Pause all videos initially
+                    video.pause();
+                    
+                    // Add touch event for mobile
+                    card.addEventListener('touchstart', () => {
+                        video.play().catch(e => console.log('Video play failed:', e));
+                    }, { passive: true });
+                    
+                    card.addEventListener('touchend', () => {
+                        // Pause after a short delay to allow the video to start
+                        setTimeout(() => {
+                            video.pause();
+                        }, 3000);
+                    }, { passive: true });
+                    
+                    // Add mouse events for desktop
+                    card.addEventListener('mouseenter', () => {
+                        video.play().catch(e => console.log('Video play failed:', e));
+                    });
+                    
+                    card.addEventListener('mouseleave', () => {
+                        video.pause();
+                    });
+                });
+            }
         }
 
         // Change page
@@ -2721,4 +2922,3 @@
     </script>
 </body>
 </html>
-
